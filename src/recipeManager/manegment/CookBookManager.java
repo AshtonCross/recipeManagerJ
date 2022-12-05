@@ -1,15 +1,18 @@
 package recipeManager.manegment;
 
 import recipeManager.bookData.CookBook;
+import java.io.File;
 
 public class CookBookManager {
-    public static CookBook createNewCookBook() {
-        // create a new one from data
-        return new CookBook();
+    
+    
+    public static void openCookBook(File cookBookFile) {
+        
     }
     
-    public static CookBook openCookBook() {
-        // parse cookbook and make a new one
-        return new CookBook();
+    public static void writeToFile() {
+        
     }
+    
+    
 }
