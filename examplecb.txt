@@ -1,0 +1,10 @@
+cookBookName
+	Cool stuff
+description
+	lol
+recipeCount
+	49
+dateCreated
+	0
+dateLastModified
+	493489348934

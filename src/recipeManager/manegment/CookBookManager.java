@@ -4,16 +4,19 @@ import recipeManager.bookData.CookBook;
 import java.io.File;
 
 public class CookBookManager {
+    CookBook currentCookBook;
     
-    
-    public static void openCookBook(File cookBookFile) {
-        
+    public void openCookBook(String cookBookPath) {
+        File file = new File(cookBookPath);
+        this.currentCookBook = new CookBook(file);
     }
     
-    public static void writeToFile() {
-        
+    public void createCookBook(String cookBookPath) {
+        // create basic cook book and write to file
+        // set this as current cook book after closing 
     }
     
-    public static void dfasdfadsfads
-    
+    public CookBook getCurrentCookBook() {
+        return currentCookBook;
+    }
 }
