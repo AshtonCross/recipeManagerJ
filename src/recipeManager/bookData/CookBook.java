@@ -4,31 +4,30 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.util.NoSuchElementException;
 import java.util.Scanner;
 
 public class CookBook {
     private File homeFile;
-    private String name;
-    private String description;
+    private String name = "Untitled Recipe";
+    private String description = "Description.";
 
     private final String[] DATA = { "cookBookName", "description"};
     
-    public CookBook(File file) {
+    public CookBook(File file) throws IOException {
         this.homeFile = file;
         
         try {
             this.readFromFile();
-        } catch (IOException e) {
-            e.printStackTrace();
+        }   catch (NoSuchElementException e) {
+        	// file does not exist, create generic file with default values
+        	
+        	this.writeToFile();
         }
         
     }
     
     public void readFromFile() throws IOException {
-        if (!homeFile.exists()) {
-            homeFile.createNewFile();
-        }
-        
         Scanner input = new Scanner(homeFile);
         
         int seekStage = 0;
@@ -58,6 +57,10 @@ public class CookBook {
     }
     
     public void writeToFile() throws IOException {
+    	if (!homeFile.exists()) {
+            homeFile.createNewFile();
+        }
+    	
         FileWriter output = new FileWriter(homeFile, false);
         
         int writeStage = 0;
@@ -78,6 +81,7 @@ public class CookBook {
             }
             
             output.write("\n");
+            ++writeStage;
         }
         
         output.close();
