@@ -20,22 +20,17 @@ public class Main extends Application {
 	@Override
 	public void start(Stage primaryStage) throws Exception {
 		// open a cook book for testing
+		//CookBookManager.openCookBook("test.cb");
 		
-		BorderPane cookBookSelection = new BorderPane();
+		CookBookManagerPane cookBooks = new CookBookManagerPane();
+		cookBooks.setMinHeight(500);
+		cookBooks.setMinWidth(600);
 		
-		
-		
-		CookBookManager.openCookBook("test.cb");
-		CookBookManager.openCookBook("othertest.cb");
-		
-		//FileChooser fileChooser = new FileChooser();
-		
-		CookbookSelect cookBookSelect = new CookbookSelect();
-
-		cookBookSelection.setCenter(cookBookSelect);
-		Scene scene = new Scene(cookBookSelect);
+		Scene scene = new Scene(cookBooks);
 		primaryStage.setScene(scene);
-		primaryStage.setTitle("test");
+		primaryStage.setTitle("Recipe Manager");
+		primaryStage.setMinHeight(500);
+		primaryStage.setMinWidth(750);
 		primaryStage.show();
 	}
 }
