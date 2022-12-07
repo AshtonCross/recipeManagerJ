@@ -1,0 +1,61 @@
+cookBookName
+	Cool stuff
+description
+	lol
+recipeCount
+	49
+dateCreated
+	0
+dateLastModified
+	493489348934
+recipes
+	{
+		recipeName
+			Steamed Hams
+		description
+			delightfully devilish
+		prepTime
+			not long
+		cookTime
+			even shorter
+		ingredients
+		{
+			steam
+			ham
+			isometric excorsize
+			etc
+		}
+		directions
+		{
+			Egads! My roast is ruined!
+			go to krusty burger
+			pass burgers as your home cooking
+			win
+		}
+		tags
+			pattented_recipe burger
+	}
+	{
+		recipeName
+			lol
+		description
+			simply lol
+		preptime
+			2 yearszzz
+		cookTime
+			fuck you
+		ingredients
+		{
+			lol
+			rofl
+			lmfao
+		}
+		directions
+		{
+			die yourself
+		}
+		tags
+			lol pattented_recipe
+	}
+END OF RECIPES
+		

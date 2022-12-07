@@ -1,23 +1,34 @@
 package recipeManager.gui.elements;
 
+import java.io.File;
+import java.io.FileNotFoundException;
+
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
+import javafx.stage.FileChooser;
+import javafx.stage.Popup;
+import javafx.stage.Stage;
 import recipeManager.bookData.CookBook;
-import recipeManager.manegment.CookBookManager;
+import recipeManager.bookData.Recipe;
+import recipeManager.manegment.InvalidCookbookFileException;
+import recipeManager.manegment.Manager;
 
 public class CookBookControl extends VBox {
 	public final int BUTTON_WIDTH = 250;
 	public final int BUTTON_HEIGHT = 50;
 	private VBox buttonPane = new VBox();
-	private HBox controlPane = new HBox();
-	private Button btLoad = new Button("New");
-	private Button btView = new Button("Load");
-	private Button btEdit = new Button("Edit");
-	private Button btSave = new Button("Save");
+	private Button btNew = new Button("New"); // make a new recipe
+	private Button btLoad = new Button("Load"); // load a cookbook
+	private Button btEdit = new Button("Edit"); // make changes to recipes
+	private Button btSave = new Button("Save"); // save changes to recipes
+	private Button btSearch = new Button("Search / Filter");
+	private RecipeButton selectedRecipe = null; // whichever recipe is currently selected
+	private InformationPane info = new InformationPane();
 
 	public CookBookControl() {
 		// set up the buttons by getting currently open cookbooks.
@@ -25,37 +36,86 @@ public class CookBookControl extends VBox {
 		buttonPane.setAlignment(Pos.BOTTOM_CENTER);
 		this.getChildren().add(buttonPane);
 
-		controlPane.getChildren().addAll(btLoad, btView, btEdit, btSave);
-		controlPane.setAlignment(Pos.BOTTOM_CENTER);
-		controlPane.setPadding(new Insets(10, 10, 10, 10));
-		controlPane.setSpacing(5);
-		this.getChildren().add(controlPane);
+		HBox metaControls = new HBox();
+		
+		metaControls.getChildren().addAll(btNew, btLoad, btEdit, btSave);
+		metaControls.setAlignment(Pos.BOTTOM_CENTER);
+		metaControls.setSpacing(5);
+		
+		VBox controls = new VBox();
+		controls.getChildren().add(metaControls);
+		controls.getChildren().add(btSearch);
+		controls.setAlignment(Pos.BASELINE_CENTER);
+
+		controls.setPadding(new Insets(10, 10, 10, 10));
+		
+		
+		this.getChildren().add(controls);
+
+		// giving the buttons their function
+		btLoad.setOnAction(e -> {
+			FileChooser fileChooser = new FileChooser();
+			fileChooser.setTitle("Open Cookbook");
+			File file = fileChooser.showOpenDialog(new Stage());
+
+			if (file == null) {
+				// user has picked "cancel"
+				return;
+			}
+
+			try {
+				Manager.open(file);
+			} catch (FileNotFoundException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			} 
+
+			this.updateButtons();
+		});
 
 	}
 
 	public void updateButtons() {
 		buttonPane.getChildren().clear();
 
-		if (CookBookManager.getOpenCookBooks().size() == 0) {
+		if (Manager.getRecipes().size() == 0) {
 			Text noneFound = new Text("Please load a cookbook!");
 			buttonPane.getChildren().add(noneFound);
 			return;
 		}
 
-
-		for (CookBook cb : CookBookManager.getOpenCookBooks()) {
-			Button newButton = new Button(cb.getName());
+		for (int i = 0; i < Manager.getRecipes().size(); ++i) {
+			Recipe r = Manager.getRecipes().get(i);
+			RecipeButton newButton = new RecipeButton(r);
 			newButton.setMinWidth(BUTTON_WIDTH);
 			newButton.setMinHeight(BUTTON_HEIGHT);
+			
+			// reset the text weight of the last one and do this one
+			newButton.setOnAction(e -> {
+				if (!(selectedRecipe == null))
+					selectedRecipe.normal();
+				
+				selectedRecipe = newButton;
+				info.loadRecipe(r);
+			});
+			
 			buttonPane.getChildren().add(newButton);
 		}
 
 	}
-
-	public HBox getControlPane() {
-		return controlPane;
+	
+	public InformationPane getInformationPane() {
+		return info;
 	}
-
+	
+	public Recipe getSelectedRecipe() {
+		// if it's empty just return null
+		if (selectedRecipe == null)
+			return null;
+		
+		return selectedRecipe.getRecipe();
+	}
+	
 	public int countCookBooks() {
 		return buttonPane.getChildren().size();
 	}

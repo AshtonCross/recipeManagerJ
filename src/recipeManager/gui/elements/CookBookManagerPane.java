@@ -1,3 +1,14 @@
+/*
+ * CookBookManagerPane.java
+ * 
+ * This file contains the declaration of the CookBookManagerPane.
+ * This pane is where the CookBookControls are added alongside 
+ * how the main info panes are managed.
+ * 
+ * The information is handled from within the CookBookControls, but
+ * this file handles the majority of the actual layout of the pane.
+ */
+
 package recipeManager.gui.elements;
 
 import javafx.geometry.Insets;
@@ -10,10 +21,11 @@ import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Text;
+import recipeManager.bookData.Recipe;
 
 public class CookBookManagerPane extends BorderPane {
 	CookBookControl cookBookControl = new CookBookControl();
-
+	
 	public CookBookManagerPane() {
 		// set up cookbooks
 		refreshCookBookPanel();
@@ -28,22 +40,16 @@ public class CookBookManagerPane extends BorderPane {
 
 		Rectangle backdrop = new Rectangle();
 		backdrop.heightProperty().bind(readingPane.heightProperty());
-		backdrop.widthProperty().bind(
-				this.widthProperty().subtract(cookBookControl.BUTTON_WIDTH));
+		backdrop.widthProperty().bind(this.widthProperty().subtract(cookBookControl.BUTTON_WIDTH));
 		backdrop.setFill(Color.LIGHTGREY);
 
 		readingPane.getChildren().add(backdrop);
 
 		// set up information pane (will manage the text displayed)
-		VBox info = new VBox();
-		Text example = new Text("Example");
+		InformationPane info = cookBookControl.getInformationPane();
 
-		info.getChildren().add(example);
-
-		for (int i = 0; i < 100; ++i) {
-			info.getChildren().add(new Text("Example " + i + "\nfuck"));
-		}
-
+		info.loadRecipe(cookBookControl.getSelectedRecipe());
+		
 		info.setAlignment(Pos.TOP_LEFT);
 		info.setPadding(new Insets(14, 14, 14, 14));
 
@@ -56,7 +62,6 @@ public class CookBookManagerPane extends BorderPane {
 		ScrollBar scrollBar = new ScrollBar();
 		scrollBar.setOrientation(Orientation.VERTICAL);
 
-
 		// TODO: figure out how to make this scale according to
 		// the length of content featured (important)
 		scrollBar.valueProperty().addListener(ov -> {
@@ -65,7 +70,6 @@ public class CookBookManagerPane extends BorderPane {
 
 		this.setRight(scrollBar);
 
-		// give buttons function
 	}
 
 	private void refreshCookBookPanel() {

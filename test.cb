@@ -2,3 +2,12 @@ cookBookName
 	edward
 description
 	Description.
+recipes
+	{
+		recipeName
+			Steamed Hams
+		description
+			delightfully devilish
+	}
+END OF RECIPES
+
