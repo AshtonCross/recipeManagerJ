@@ -62,5 +62,29 @@ recipes
 		tags
 			lol pattented_recipe
 	}
+	{
+		recipeName
+			REALLY REALLY REALLY REALLY REALLY REALLY REALLY LOOOOOOOOOOOOOOONG NAAAAAAME!!!!!
+		description
+			It's a little long
+		prepTime
+			1 decade
+		cookTime
+			3 seconds
+		ingredients
+		{
+			hatred
+			length
+			a really really really really really really really really really really really really really really really really really really really really really really really really really really  long piece of paper
+		}
+		directions
+		{
+			do something
+			yep
+			get a really really really really really really really really really really really really really really really really really really really really really really really really really really long piece of paper
+		}
+		tags
+			lol REALLY_REALLY_REALLY_REALLY_REALLY_LONG_TAG TAG
+	}
 END OF RECIPES
 		

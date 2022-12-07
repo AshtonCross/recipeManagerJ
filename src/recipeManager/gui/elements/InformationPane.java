@@ -33,6 +33,9 @@ import javafx.scene.text.Text;
 import recipeManager.bookData.Recipe;
 
 public class InformationPane extends VBox {
+	private final double FONT_BASE = 25;
+	private Font defaultFont = Font.font(FONT_BASE);
+	
 	public InformationPane() {
 		
 	}
@@ -43,13 +46,16 @@ public class InformationPane extends VBox {
 		
 		// check if r = null. (no recipe given)
 		if (r == null) {
-			getChildren().add(new Text("Select a recipe."));
+			Text nullmsg = new Text("Select a recipe.");
+			nullmsg.setFont(defaultFont);
+			getChildren().add(nullmsg);
 			return;
 		}
 		
 		// set up all text objects starting with recipe's name
 		Text name = new Text(r.getName());
-		name.setFont(Font.font("Mono", FontWeight.BOLD, FontPosture.ITALIC, 26));
+		name.wrappingWidthProperty().bind(this.widthProperty());
+		name.setFont(Font.font("Mono", FontWeight.BOLD, FontPosture.ITALIC, 1.8*FONT_BASE));
 		
 		// time info
 		String prep = r.getPrepTime().trim();
@@ -63,9 +69,11 @@ public class InformationPane extends VBox {
 		
 		Text timeInfo = new Text("Prep Time: " + r.getPrepTime() + 
 						      " | Cook Time: " + r.getCookTime());
+		timeInfo.setFont(defaultFont);
 		
 		// author
 		Text author = new Text("Author: " + r.getAuthor());
+		author.setFont(defaultFont);
 		
 		// tags
 		String ftags = "TAGS: ";
@@ -76,11 +84,11 @@ public class InformationPane extends VBox {
 		}
 		
 		Text tags = new Text(ftags);
-		tags.setFont(Font.font("Mono", FontWeight.LIGHT, FontPosture.REGULAR, 9));
+		tags.setFont(Font.font("Mono", FontWeight.LIGHT, FontPosture.REGULAR, 0.7*FONT_BASE));
 		
 		// Ingredients
 		Text ingredientsLabel = new Text("Ingredients:");
-		ingredientsLabel.setFont(Font.font("Mono", FontWeight.BOLD, FontPosture.ITALIC, 16));
+		ingredientsLabel.setFont(Font.font("Mono", FontWeight.BOLD, FontPosture.ITALIC, 1.2*FONT_BASE));
 		
 		VBox ingredientsList = new VBox();
 		
