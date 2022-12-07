@@ -37,19 +37,18 @@ public class CookBookControl extends VBox {
 		this.getChildren().add(buttonPane);
 
 		HBox metaControls = new HBox();
-		
+
 		metaControls.getChildren().addAll(btNew, btLoad, btEdit, btSave);
 		metaControls.setAlignment(Pos.BOTTOM_CENTER);
 		metaControls.setSpacing(5);
-		
+
 		VBox controls = new VBox();
 		controls.getChildren().add(metaControls);
 		controls.getChildren().add(btSearch);
 		controls.setAlignment(Pos.BASELINE_CENTER);
 
 		controls.setPadding(new Insets(10, 10, 10, 10));
-		
-		
+
 		this.getChildren().add(controls);
 
 		// giving the buttons their function
@@ -69,7 +68,7 @@ public class CookBookControl extends VBox {
 				// TODO Auto-generated catch block
 				System.out.println("it broke.");
 				e1.printStackTrace();
-			} 
+			}
 
 			this.updateButtons();
 		});
@@ -90,33 +89,33 @@ public class CookBookControl extends VBox {
 			RecipeButton newButton = new RecipeButton(r);
 			newButton.setMinWidth(BUTTON_WIDTH);
 			newButton.setMinHeight(BUTTON_HEIGHT);
-			
+
 			// reset the text weight of the last one and do this one
 			newButton.setOnAction(e -> {
 				if (!(selectedRecipe == null))
 					selectedRecipe.normal();
-				
+
 				selectedRecipe = newButton;
 				info.loadRecipe(r);
 			});
-			
+
 			buttonPane.getChildren().add(newButton);
 		}
 
 	}
-	
+
 	public InformationPane getInformationPane() {
 		return info;
 	}
-	
+
 	public Recipe getSelectedRecipe() {
 		// if it's empty just return null
 		if (selectedRecipe == null)
 			return null;
-		
+
 		return selectedRecipe.getRecipe();
 	}
-	
+
 	public int countCookBooks() {
 		return buttonPane.getChildren().size();
 	}

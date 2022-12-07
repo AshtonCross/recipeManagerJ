@@ -23,7 +23,10 @@
 
 package recipeManager.gui.elements;
 
+import javafx.beans.binding.DoubleBinding;
+import javafx.beans.property.DoubleProperty;
 import javafx.geometry.Insets;
+import javafx.scene.Node;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Font;
@@ -33,17 +36,22 @@ import javafx.scene.text.Text;
 import recipeManager.bookData.Recipe;
 
 public class InformationPane extends VBox {
-	private final double FONT_BASE = 25;
+	private final double FONT_BASE = 16;
 	private Font defaultFont = Font.font(FONT_BASE);
-	
+	public static DoubleBinding widthBinding = null;
+
 	public InformationPane() {
-		
+
 	}
-	
+
+	public void setWidthBinding(DoubleProperty b) {
+		widthBinding = b.multiply(0.9);
+	}
+
 	public void loadRecipe(Recipe r) {
 		// clear out any text in here
 		getChildren().clear();
-		
+
 		// check if r = null. (no recipe given)
 		if (r == null) {
 			Text nullmsg = new Text("Select a recipe.");
@@ -51,64 +59,95 @@ public class InformationPane extends VBox {
 			getChildren().add(nullmsg);
 			return;
 		}
-		
+
 		// set up all text objects starting with recipe's name
 		Text name = new Text(r.getName());
-		name.wrappingWidthProperty().bind(this.widthProperty());
-		name.setFont(Font.font("Mono", FontWeight.BOLD, FontPosture.ITALIC, 1.8*FONT_BASE));
-		
+		name.setFont(Font.font("Mono", FontWeight.BOLD, FontPosture.ITALIC, 2.8 * FONT_BASE));
+
 		// time info
 		String prep = r.getPrepTime().trim();
 		String cook = r.getCookTime().trim();
-		
+
 		if (prep == null || prep.equals(""))
 			prep = "???";
-		
+
 		if (cook == null || cook.equals(""))
 			cook = "???";
-		
-		Text timeInfo = new Text("Prep Time: " + r.getPrepTime() + 
-						      " | Cook Time: " + r.getCookTime());
+
+		Text timeInfo = new Text("Prep Time: " + r.getPrepTime() + " | Cook Time: " + r.getCookTime());
 		timeInfo.setFont(defaultFont);
-		
+
 		// author
 		Text author = new Text("Author: " + r.getAuthor());
 		author.setFont(defaultFont);
-		
+
 		// tags
 		String ftags = "TAGS: ";
-		
+
 		for (String tag : r.getTags()) {
 			ftags += tag;
 			ftags += " "; // separate w./ SPC
 		}
-		
+
 		Text tags = new Text(ftags);
-		tags.setFont(Font.font("Mono", FontWeight.LIGHT, FontPosture.REGULAR, 0.7*FONT_BASE));
-		
+		tags.setFont(Font.font("Mono", FontWeight.LIGHT, FontPosture.REGULAR, 0.7 * FONT_BASE));
+
 		// Ingredients
 		Text ingredientsLabel = new Text("Ingredients:");
-		ingredientsLabel.setFont(Font.font("Mono", FontWeight.BOLD, FontPosture.ITALIC, 1.2*FONT_BASE));
-		
+		ingredientsLabel.setFont(Font.font("Mono", FontWeight.BOLD, FontPosture.ITALIC, 1.2 * FONT_BASE));
+		ingredientsLabel.wrappingWidthProperty().bind(widthBinding);
+
 		VBox ingredientsList = new VBox();
-		
+
 		for (String ingredient : r.getIngredients()) {
 			Text i = new Text("+ " + ingredient);
-			i.setFont(Font.font("Mono", FontWeight.NORMAL, FontPosture.ITALIC, 14));
-			
+			i.setFont(Font.font("Mono", FontWeight.NORMAL, FontPosture.ITALIC, FONT_BASE));
+			i.wrappingWidthProperty().bind(widthBinding);
+
 			ingredientsList.getChildren().add(i);
 		}
-		
+
 		// format ingredients within a vbox
 		VBox ingredients = new VBox();
-		
+
 		ingredients.getChildren().addAll(ingredientsLabel, ingredientsList);
 		ingredients.setPadding(new Insets(7, 7, 7, 7));
+
+		// directions
+		VBox directions = new VBox();
+		directions.setPadding(new Insets(7, 7, 7, 7)); // copy that padding
+		directions.setSpacing(25);
 		
+		Text directionsLabel = new Text("Directions:");
+		directionsLabel.setFont(Font.font("Mono", FontWeight.BOLD, FontPosture.ITALIC, 2.0 * FONT_BASE));
+		directions.getChildren().add(directionsLabel);
+
+		for (int i = 0; i < r.getDirections().size(); ++i) {
+			Text stepLabel = new Text("Step #" + (i + 1));
+			stepLabel.setFont(Font.font("Mono", FontWeight.NORMAL, FontPosture.ITALIC, 0.9 * FONT_BASE));
+			stepLabel.wrappingWidthProperty().bind(widthBinding);
+
+			Text direction = new Text("  " + r.getDirections().get(i));
+			direction.setFont(Font.font(1.2*FONT_BASE));
+			direction.wrappingWidthProperty().bind(widthBinding);
+			
+			// keep them close to eachother
+			VBox combo = new VBox();
+			combo.getChildren().addAll(stepLabel, direction);
+			
+			directions.getChildren().add(combo);
+		}
+
+		// bind width if avalible.
+
+		if (widthBinding != null) {
+			name.wrappingWidthProperty().bind(widthBinding);
+			timeInfo.wrappingWidthProperty().bind(widthBinding);
+			author.wrappingWidthProperty().bind(widthBinding);
+			tags.wrappingWidthProperty().bind(widthBinding);
+		}
+
 		// add all text objects to pane
-		getChildren().addAll(name, timeInfo, author, tags,
-				ingredients);
-		
-		
+		getChildren().addAll(name, timeInfo, author, tags, ingredients, directions);
 	}
 }

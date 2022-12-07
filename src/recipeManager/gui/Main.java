@@ -21,8 +21,8 @@ public class Main extends Application {
 		final int MIN_FRAME_WIDTH = 750;
 
 		CookBookManagerPane cookBooks = new CookBookManagerPane();
-		cookBooks.setPrefHeight(MIN_FRAME_HEIGHT);
-		cookBooks.setPrefWidth(MIN_FRAME_WIDTH);
+		cookBooks.setPrefHeight(MIN_FRAME_HEIGHT + 500);
+		cookBooks.setPrefWidth(MIN_FRAME_WIDTH + 300);
 		// cookBooks.heightProperty().bind(primaryStage.heightProperty());
 
 		Scene scene = new Scene(cookBooks);

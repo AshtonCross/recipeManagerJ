@@ -13,15 +13,14 @@ import java.util.List;
 import java.util.Scanner;
 
 public class Recipe {
-	private String name = "Untitled Recipe";		// name
-	private String description = "Description";		// basic description of the food in here.
-	private String author = "";						// who made it?
-	private ArrayList<String> tags = new ArrayList<String>(); 			// store all tags here
-	private ArrayList<String> directions = new ArrayList<String>(); 	// store all directions here
-	private ArrayList<String> ingredients = new ArrayList<String>();	// store ingredients 
+	private String name = "Untitled Recipe"; // name
+	private String description = "Description"; // basic description of the food in here.
+	private String author = ""; // who made it?
+	private ArrayList<String> tags = new ArrayList<String>(); // store all tags here
+	private ArrayList<String> directions = new ArrayList<String>(); // store all directions here
+	private ArrayList<String> ingredients = new ArrayList<String>(); // store ingredients
 	private String prepTime = "";
 	private String cookTime = "";
-	
 
 	public Recipe() {
 
@@ -86,7 +85,7 @@ public class Recipe {
 	public String toString() {
 		return name;
 	}
-	
+
 	public String getPrepTime() {
 		return prepTime;
 	}
@@ -96,9 +95,9 @@ public class Recipe {
 	}
 
 	public void setTags(ArrayList<String> tags) {
-		this.tags = tags;		
+		this.tags = tags;
 	}
-	
+
 	public ArrayList<String> getTags() {
 		return tags;
 	}
@@ -106,7 +105,7 @@ public class Recipe {
 	public void setIngrediants(ArrayList<String> ingredients) {
 		this.ingredients = ingredients;
 	}
-	
+
 	public ArrayList<String> getIngredients() {
 		return ingredients;
 	}
@@ -114,23 +113,23 @@ public class Recipe {
 	public void setCookTime(String cookTime) {
 		this.cookTime = cookTime;
 	}
-	
+
 	public String getCookTime() {
 		return cookTime;
 	}
-	
+
 	public String getAuthor() {
 		return author;
 	}
-	
+
 	public void setAuthor(String author) {
 		this.author = author;
 	}
-	
+
 	public ArrayList<String> getDirections() {
 		return directions;
 	}
-	
+
 	public void setDirections(ArrayList<String> directions) {
 		this.directions = directions;
 	}

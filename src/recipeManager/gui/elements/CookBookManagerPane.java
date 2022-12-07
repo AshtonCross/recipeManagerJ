@@ -11,6 +11,7 @@
 
 package recipeManager.gui.elements;
 
+import javafx.beans.property.DoubleProperty;
 import javafx.geometry.Insets;
 import javafx.geometry.Orientation;
 import javafx.geometry.Pos;
@@ -24,8 +25,8 @@ import javafx.scene.text.Text;
 import recipeManager.bookData.Recipe;
 
 public class CookBookManagerPane extends BorderPane {
-	CookBookControl cookBookControl = new CookBookControl();
-	
+	private CookBookControl cookBookControl = new CookBookControl();
+
 	public CookBookManagerPane() {
 		// set up cookbooks
 		refreshCookBookPanel();
@@ -47,9 +48,9 @@ public class CookBookManagerPane extends BorderPane {
 
 		// set up information pane (will manage the text displayed)
 		InformationPane info = cookBookControl.getInformationPane();
-
+		info.setWidthBinding(backdrop.widthProperty());
 		info.loadRecipe(cookBookControl.getSelectedRecipe());
-		
+
 		info.setAlignment(Pos.TOP_LEFT);
 		info.setPadding(new Insets(14, 14, 14, 14));
 

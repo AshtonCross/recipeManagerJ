@@ -64,68 +64,70 @@ public class Manager {
 				// clear out the old tempRecipe definition with a new one.
 				tempRecipe = new Recipe();
 				break;
-				
+
 			case "\t}":
 				// closing curly bracket with 1 tab = end recipe declaration.
 				// we now save this recipe to the recipe list.
 				recipes.add(tempRecipe);
 				System.out.println("added " + tempRecipe);
 				break;
-				
+
 			case "\t\trecipeName":
 				tempRecipe.setName(input.nextLine().trim());
 				break;
-				
+
 			case "\t\tauthor":
 				tempRecipe.setAuthor(input.nextLine().trim());
 				break;
-				
+
 			case "\t\tdescription":
 				tempRecipe.setDescription(input.nextLine().trim());
 				break;
-				
+
 			case "\t\tprepTime":
 				tempRecipe.setPrepTime(input.nextLine().trim());
 				break;
-				
+
 			case "\t\tcookTime":
 				tempRecipe.setCookTime(input.nextLine().trim());
 				break;
-				
+
+			// now for some arrays
+
+			case "\t\tdirections":
+				tempRecipe.setDirections(readList(input));
+				break;
+
 			case "\t\tingredients":
 				tempRecipe.setIngrediants(readList(input));
 				break;
-				
-			// now for some arrays
-				
+
 			case "\t\ttags":
 				// all tags seperated by a SPC then split into arraylist.
-				
+
 				String[] rawTags = input.nextLine().trim().split(" ");
 				ArrayList<String> arrayTags = new ArrayList<String>();
-				
+
 				tempRecipe.setTags(arrayTags);
-				
+
 				for (String tag : rawTags)
 					arrayTags.add(tag);
-				
+
 				break;
-				
-			
-				
+
 			}
 
 			nextLine = input.nextLine();
 		}
 	}
-	
+
 	private static ArrayList<String> readList(Scanner input) {
 		/*
-		 * This method takes a scanner, and reads 
+		 * This method takes a scanner, and reads
 		 */
-		
+
 		String nextLine = input.nextLine().trim(); // this should be "{"
-		
+
 		if (!nextLine.equals("{")) {
 			System.out.println("List missing starting bracket.");
 			return null; // no list :(
@@ -133,17 +135,17 @@ public class Manager {
 			// skip initial opening bracket
 			nextLine = input.nextLine().trim();
 		}
-		
+
 		ArrayList<String> list = new ArrayList<String>();
-		
+
 		while (!nextLine.equals("}")) {
 			// add each element from the list, under .cb ""syntax"" is seperated by line
-			
+
 			list.add(nextLine);
-			
+
 			nextLine = input.nextLine().trim();
 		}
-		
+
 		return list;
 	}
 
