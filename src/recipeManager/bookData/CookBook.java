@@ -1,3 +1,10 @@
+/*
+ * CookBook.java
+ * 
+ * This file contains the basic data read from a cook book file,
+ * and is where data relating to the cook book itself is.
+ */
+
 package recipeManager.bookData;
 
 import java.io.File;

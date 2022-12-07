@@ -67,6 +67,7 @@ public class CookBookControl extends VBox {
 				Manager.open(file);
 			} catch (FileNotFoundException e1) {
 				// TODO Auto-generated catch block
+				System.out.println("it broke.");
 				e1.printStackTrace();
 			} 
 
