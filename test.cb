@@ -1,13 +1,76 @@
 cookBookName
-	edward
+	test.cb
 description
 	Description.
+dateCreated
+	0
+dateLastModified
+	493489348934
 recipes
 	{
 		recipeName
-			Steamed Hams
+			Untitled Recipe
 		description
-			delightfully devilish
+			Description.
+		author
+			
+		prepTime
+			
+		cookTime
+			
+		ingredients
+		{
+			
+		}
+		directions
+		{
+			
+		}
+		tags
+			 
+	}
+	{
+		recipeName
+			Untitled Recipe
+		description
+			Description.
+		author
+			
+		prepTime
+			
+		cookTime
+			
+		ingredients
+		{
+			
+		}
+		directions
+		{
+			
+		}
+		tags
+			 
+	}
+	{
+		recipeName
+			Untitled Recipe
+		description
+			Description.
+		author
+			
+		prepTime
+			
+		cookTime
+			
+		ingredients
+		{
+			
+		}
+		directions
+		{
+			
+		}
+		tags
+			 
 	}
 END OF RECIPES
-

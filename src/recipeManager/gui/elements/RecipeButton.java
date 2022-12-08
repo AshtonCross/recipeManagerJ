@@ -2,7 +2,6 @@ package recipeManager.gui.elements;
 
 import javafx.scene.control.Button;
 import recipeManager.bookData.Recipe;
-import recipeManager.manegment.Manager;
 
 public class RecipeButton extends Button {
 	private Recipe recipe;

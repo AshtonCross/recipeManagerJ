@@ -1,3 +1,10 @@
+/*
+ * CookBookControl.java
+ *
+ * this file contains the declaration for the controls for interacting with the recipes.
+ *
+ */
+
 package recipeManager.gui.elements;
 
 import java.io.File;
@@ -6,7 +13,6 @@ import java.io.FileNotFoundException;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;
-import javafx.scene.control.Label;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Font;
@@ -14,11 +20,8 @@ import javafx.scene.text.FontPosture;
 import javafx.scene.text.FontWeight;
 import javafx.scene.text.Text;
 import javafx.stage.FileChooser;
-import javafx.stage.Popup;
 import javafx.stage.Stage;
-import recipeManager.bookData.CookBook;
 import recipeManager.bookData.Recipe;
-import recipeManager.manegment.InvalidCookbookFileException;
 import recipeManager.manegment.Manager;
 
 public class CookBookControl extends VBox {
@@ -28,7 +31,7 @@ public class CookBookControl extends VBox {
 	private Button btNew = new Button("New"); // make a new recipe
 	private Button btLoad = new Button("Load"); // load a cookbook
 	private Button btEdit = new Button("Edit"); // make changes to recipes
-	private Button btSave = new Button("Save"); // save changes to recipes
+	private Button btWrite = new Button("Write"); // save changes to recipes
 	private Button btSearch = new Button("Search / Filter");
 	private RecipeButton selectedRecipe = null; // whichever recipe is currently selected
 	private InformationPane info = new InformationPane();
@@ -37,11 +40,13 @@ public class CookBookControl extends VBox {
 		// set up the buttons by getting currently open cookbooks.
 		this.updateButtons();
 		buttonPane.setAlignment(Pos.BOTTOM_CENTER);
+		buttonPane.setSpacing(15);
 		this.getChildren().add(buttonPane);
+		Manager.setCookBookControl(this);
 
 		HBox metaControls = new HBox();
 
-		metaControls.getChildren().addAll(btNew, btLoad, btEdit, btSave);
+		metaControls.getChildren().addAll(btNew, btLoad, btEdit, btWrite);
 		metaControls.setAlignment(Pos.BOTTOM_CENTER);
 		metaControls.setSpacing(5);
 
@@ -58,6 +63,8 @@ public class CookBookControl extends VBox {
 		btLoad.setOnAction(e -> {
 			FileChooser fileChooser = new FileChooser();
 			fileChooser.setTitle("Open Cookbook");
+			FileChooser.ExtensionFilter extFilter = new FileChooser.ExtensionFilter("CB files (*.cb)", "*.cb");
+			fileChooser.getExtensionFilters().add(extFilter);
 			File file = fileChooser.showOpenDialog(new Stage());
 
 			if (file == null) {
@@ -74,28 +81,30 @@ public class CookBookControl extends VBox {
 			}
 
 			this.updateButtons();
+			Manager.setButtonsControl(this);
 		});
-		
+
 		btNew.setOnAction(e -> {
-			// TODO:
-			
-			// create a new recipe, add it to the file, and then open it for editing
+			Manager.getRecipes().add(new Recipe());
+
+			this.updateButtons();
 		});
-		
-		btSave.setOnAction(e -> {
-			// TODO:
-			
-			// if there's no cookbook open, then ask user for location and open the new one
-			
-			// write to open cookbook
+
+		btWrite.setOnAction(e -> {
+			System.out.println("BUTTON WRITE PROCESSED");
+			Manager.write();
+
 		});
-		
+
 		btEdit.setOnAction(e -> {
-			// get the current recipe and create a new editing pane based off it
-			
-			// get the current values and put them into editable text boxes
-			
-			// in this pane, have a cancel and save button
+			if (selectedRecipe == null)
+				return;
+
+			Manager.openEditor(selectedRecipe);
+		});
+		
+		btSearch.setOnAction(e -> {
+			Manager.openFilterMenu();
 		});
 
 	}
@@ -104,13 +113,43 @@ public class CookBookControl extends VBox {
 		buttonPane.getChildren().clear();
 
 		if (Manager.getRecipes().size() == 0) {
-			Text noneFound = new Text("Please load a cookbook!");
+			Text noneFound = new Text("Press \"New\" to get started!");
 			buttonPane.getChildren().add(noneFound);
 			return;
 		}
 
-		for (int i = 0; i < Manager.getRecipes().size(); ++i) {
-			Recipe r = Manager.getRecipes().get(i);
+		for (Recipe r : Manager.getRecipes()) {
+
+			if (Manager.getFilter().size() > 0) {
+				boolean passesFilter = false;
+				
+				for (String tag : r.getTags()) {
+					for (String filterTag : Manager.getFilter()) {
+						if (tag.equals(filterTag)) {
+							passesFilter = true;
+							break;
+						}
+					}
+					
+					if (passesFilter)
+						break;
+				}
+
+				// move to next recipe without adding.
+				if (!passesFilter) continue;
+			}
+			
+			/*
+			 * Tag system plan:
+			 *
+			 * boolean containsTag = false;
+			 *
+			 * for (String filterTag : Manager.getFilter()) { for (String tag : r.getTags())
+			 * if tag.equals(filterTag) containsTag = true;
+			 *
+			 * if (!containsTag) continue;
+			 */
+
 			RecipeButton newButton = new RecipeButton(r);
 			newButton.setMinWidth(BUTTON_WIDTH);
 			newButton.setMinHeight(BUTTON_HEIGHT);

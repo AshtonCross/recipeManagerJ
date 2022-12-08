@@ -1,19 +1,19 @@
 /*
  * InformationPane.java
- * 
+ *
  * This pane contains all that goes into formatting the data from a Recipe class
- * into something nice to read. 
- * 
- * TODO: 
- * Create a FILO stack containing the last 10 or so informationPanes that were 
+ * into something nice to read.
+ *
+ * TODO:
+ * Create a FILO stack containing the last 10 or so informationPanes that were
  * generated, and then use that to avoid reloading the same panes over and over
  * again to allow easy switching.
- * 
+ *
  * TODO:
  * Allow for the user to add a list of things that they're allergic to, and then
- * try your best to highlight those allergies in the ingredients list before they 
+ * try your best to highlight those allergies in the ingredients list before they
  * get added.
- * 
+ *
  * TODO:
  * Add increase / decrease font size buttons, where it takes base font and then
  * increases. Each font should have their size be proportional to this base font
@@ -26,8 +26,6 @@ package recipeManager.gui.elements;
 import javafx.beans.binding.DoubleBinding;
 import javafx.beans.property.DoubleProperty;
 import javafx.geometry.Insets;
-import javafx.scene.Node;
-import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontPosture;
@@ -63,6 +61,9 @@ public class InformationPane extends VBox {
 		// set up all text objects starting with recipe's name
 		Text name = new Text(r.getName());
 		name.setFont(Font.font("Mono", FontWeight.BOLD, FontPosture.ITALIC, 2.8 * FONT_BASE));
+		
+		Text description = new Text(r.getDescription());
+		description.setFont(Font.font("Mono", FontWeight.NORMAL, FontPosture.ITALIC, 1.8 * FONT_BASE));
 
 		// time info
 		String prep = r.getPrepTime().trim();
@@ -117,7 +118,7 @@ public class InformationPane extends VBox {
 		VBox directions = new VBox();
 		directions.setPadding(new Insets(7, 7, 7, 7)); // copy that padding
 		directions.setSpacing(25);
-		
+
 		Text directionsLabel = new Text("Directions:");
 		directionsLabel.setFont(Font.font("Mono", FontWeight.BOLD, FontPosture.ITALIC, 2.0 * FONT_BASE));
 		directions.getChildren().add(directionsLabel);
@@ -128,13 +129,13 @@ public class InformationPane extends VBox {
 			stepLabel.wrappingWidthProperty().bind(widthBinding);
 
 			Text direction = new Text("  " + r.getDirections().get(i));
-			direction.setFont(Font.font(1.2*FONT_BASE));
+			direction.setFont(Font.font(1.2 * FONT_BASE));
 			direction.wrappingWidthProperty().bind(widthBinding);
-			
+
 			// keep them close to eachother
 			VBox combo = new VBox();
 			combo.getChildren().addAll(stepLabel, direction);
-			
+
 			directions.getChildren().add(combo);
 		}
 
@@ -142,12 +143,13 @@ public class InformationPane extends VBox {
 
 		if (widthBinding != null) {
 			name.wrappingWidthProperty().bind(widthBinding);
+			description.wrappingWidthProperty().bind(widthBinding);
 			timeInfo.wrappingWidthProperty().bind(widthBinding);
 			author.wrappingWidthProperty().bind(widthBinding);
 			tags.wrappingWidthProperty().bind(widthBinding);
 		}
 
 		// add all text objects to pane
-		getChildren().addAll(name, timeInfo, author, tags, ingredients, directions);
+		getChildren().addAll(name, description, timeInfo, author, tags, ingredients, directions);
 	}
 }

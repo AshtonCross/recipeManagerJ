@@ -1,28 +1,25 @@
 /*
  * CookBookManagerPane.java
- * 
+ *
  * This file contains the declaration of the CookBookManagerPane.
- * This pane is where the CookBookControls are added alongside 
+ * This pane is where the CookBookControls are added alongside
  * how the main info panes are managed.
- * 
+ *
  * The information is handled from within the CookBookControls, but
  * this file handles the majority of the actual layout of the pane.
  */
 
 package recipeManager.gui.elements;
 
-import javafx.beans.property.DoubleProperty;
 import javafx.geometry.Insets;
 import javafx.geometry.Orientation;
 import javafx.geometry.Pos;
 import javafx.scene.control.ScrollBar;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.Pane;
-import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Text;
-import recipeManager.bookData.Recipe;
 
 public class CookBookManagerPane extends BorderPane {
 	private CookBookControl cookBookControl = new CookBookControl();
@@ -63,8 +60,6 @@ public class CookBookManagerPane extends BorderPane {
 		ScrollBar scrollBar = new ScrollBar();
 		scrollBar.setOrientation(Orientation.VERTICAL);
 
-		// TODO: figure out how to make this scale according to
-		// the length of content featured (important)
 		scrollBar.valueProperty().addListener(ov -> {
 			info.setLayoutY(-(scrollBar.getValue() * info.getHeight() / scrollBar.getMax()));
 		});
@@ -74,6 +69,7 @@ public class CookBookManagerPane extends BorderPane {
 	}
 
 	private void refreshCookBookPanel() {
+
 		if (cookBookControl.countCookBooks() == 0) {
 			Text notFound = new Text("Press \"New\" to make a cook book!");
 			notFound.maxWidth(cookBookControl.BUTTON_WIDTH);

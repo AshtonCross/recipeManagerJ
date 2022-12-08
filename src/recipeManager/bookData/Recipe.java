@@ -1,33 +1,34 @@
 /*
  * Recipe.java
- * 
+ *
  * This class contains the information for one individual recipe.
- * 
+ *
  * This class is instantiate multiple times to store many recipes.
  */
 
 package recipeManager.bookData;
 
 import java.util.ArrayList;
-import java.util.List;
 import java.util.Scanner;
 
 public class Recipe {
 	private String name = "Untitled Recipe"; // name
 	private String description = "Description"; // basic description of the food in here.
 	private String author = ""; // who made it?
-	private ArrayList<String> tags = new ArrayList<String>(); // store all tags here
-	private ArrayList<String> directions = new ArrayList<String>(); // store all directions here
-	private ArrayList<String> ingredients = new ArrayList<String>(); // store ingredients
+	private ArrayList<String> tags = new ArrayList<>(); // store all tags here
+	private ArrayList<String> directions = new ArrayList<>(); // store all directions here
+	private ArrayList<String> ingredients = new ArrayList<>(); // store ingredients
 	private String prepTime = "";
 	private String cookTime = "";
 
 	public Recipe() {
-
+		tags.add("");
+		directions.add("");
+		ingredients.add("");
 	}
 
 	public static ArrayList<Recipe> readRecipes(Scanner input) {
-		ArrayList<Recipe> recipes = new ArrayList<Recipe>();
+		ArrayList<Recipe> recipes = new ArrayList<>();
 
 		String nextLine = input.nextLine().trim();
 		System.out.println("recipe gen\t" + nextLine);
