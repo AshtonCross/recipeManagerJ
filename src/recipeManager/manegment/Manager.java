@@ -22,6 +22,7 @@ import recipeManager.bookData.*;
 public class Manager {
 	private static CookBook currentCookBook = new CookBook();
 	private static ArrayList<Recipe> recipes = new ArrayList<Recipe>();
+	private static boolean hasCookBookOpen = false;
 
 	public static void open(File file) throws FileNotFoundException {
 		Scanner input = new Scanner(file);
@@ -51,6 +52,7 @@ public class Manager {
 		}
 
 		input.close();
+		hasCookBookOpen = true;
 	}
 
 	private static void readRecipes(Scanner input) {
@@ -148,6 +150,21 @@ public class Manager {
 
 		return list;
 	}
+	
+	public static void createNewCookBook(File file) {
+		createNewCookBook(file, "untitled.cb");
+	}
+	
+	public static void createNewCookBook(File file, String name) {
+		// TODO:
+		// see if a new file is able to be created
+		
+		// if yes, create the file and open it
+		
+		// once open, return
+		
+		
+	}
 
 	public static ArrayList<Recipe> getRecipes() {
 		return recipes;
@@ -155,5 +172,9 @@ public class Manager {
 
 	public static CookBook currentCookBook() {
 		return currentCookBook;
+	}
+	
+	public static boolean isCookBookOpen() {
+		return hasCookBookOpen;
 	}
 }

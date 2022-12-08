@@ -9,6 +9,9 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
+import javafx.scene.text.Font;
+import javafx.scene.text.FontPosture;
+import javafx.scene.text.FontWeight;
 import javafx.scene.text.Text;
 import javafx.stage.FileChooser;
 import javafx.stage.Popup;
@@ -72,6 +75,28 @@ public class CookBookControl extends VBox {
 
 			this.updateButtons();
 		});
+		
+		btNew.setOnAction(e -> {
+			// TODO:
+			
+			// create a new recipe, add it to the file, and then open it for editing
+		});
+		
+		btSave.setOnAction(e -> {
+			// TODO:
+			
+			// if there's no cookbook open, then ask user for location and open the new one
+			
+			// write to open cookbook
+		});
+		
+		btEdit.setOnAction(e -> {
+			// get the current recipe and create a new editing pane based off it
+			
+			// get the current values and put them into editable text boxes
+			
+			// in this pane, have a cancel and save button
+		});
 
 	}
 
@@ -93,9 +118,10 @@ public class CookBookControl extends VBox {
 			// reset the text weight of the last one and do this one
 			newButton.setOnAction(e -> {
 				if (!(selectedRecipe == null))
-					selectedRecipe.normal();
+					selectedRecipe.setFont(Font.font("Mono", FontWeight.NORMAL, FontPosture.REGULAR, 14));
 
 				selectedRecipe = newButton;
+				newButton.setFont(Font.font("Mono", FontWeight.BOLD, FontPosture.ITALIC, 15));
 				info.loadRecipe(r);
 			});
 
