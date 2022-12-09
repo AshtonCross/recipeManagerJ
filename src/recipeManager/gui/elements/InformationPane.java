@@ -80,6 +80,7 @@ public class InformationPane extends VBox {
 
 		// author
 		Text author = new Text("Author: " + r.getAuthor());
+		System.out.println(r.getAuthor());
 		author.setFont(defaultFont);
 
 		// tags

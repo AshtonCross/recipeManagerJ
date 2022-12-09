@@ -1,0 +1,351 @@
+cookBookName
+	based_cooking.cb
+description
+	Description.
+dateCreated
+	0
+dateLastModified
+	493489348934
+recipes
+	{
+		recipeName
+			Chicken Paprikash
+		description
+			A recipe for Glühwein/mulled wine a beverage you can find at almost every European christmas market. This recipe is my favorite one - optimized for flavor rather than alcohol content (it still kicks in).
+		author
+			based.cooking
+		prepTime
+			10 min
+		cookTime
+			1 hr 25 min
+		ingredients
+		{
+			8 bone-in, skin-on chicken thighs
+			salt to taste
+			pepper to taste
+			2 cups chicken or beef broth
+			2 tablespoons olive oil
+			2 medium sized onions
+			1 tablespoon powdered garlic
+			3 tablespoons tomato paste
+			1/4 cup Hungarian paprika or regular paprika
+			1 tablespoon cayenne pepper (optional)
+			1 cup sour cream (optional)
+		}
+		directions
+		{
+			Pat raw chicken thighs with paper towels for crispier skin. Season with salt and pepper.
+			Heat up a heavy, deep-sided pan on high heat with a little olive oil.
+			Add the chicken thighs skin-side down. Brown the thighs for five minutes on each side then remove each thigh and place them aside once browned.
+			Add chopped onions to the pan with the chicken fat and sauce until the onions are golden.
+			Add powdered garlic and tomato paste. Stir this another 5 minutes to create a tomato-roux.
+			Add Hungarian paprika and stir another minute.
+			Add chicken or beef broth and bring it to a medium temperature.
+			Add chicken or beef broth and bring it to a medium temperature.
+			Cover the pan with a lid and simmer the dish for 45 to 60 minutes.
+			With a fork, test to see that the chicken is tender. Add salt and pepper to taste afterwards.
+			Plate the chicken with an optional dusting of cayenne pepper and serve it with some nice hearty bread. This dish has sour cream added to it traditionally, however if dairy is not your thing it’s delicious without it also. So for this last step you can add some sour cream to the sauce and stir it or add the sour cream at the end when you plate the chicken. Then garnish with herbs and enjoy!
+		}
+		tags
+			STEW CHICKEN HUNGARIAN 
+	}
+	{
+		recipeName
+			Ratatouille
+		description
+			
+		author
+			Joel Maxuel
+		prepTime
+			12 min
+		cookTime
+			75 min
+		ingredients
+		{
+			3 1/2 lbs Tomatoes
+			1 1/2 lbs Eggplant
+			1 lb Zucchini
+			3 Bell Peppers
+			2 lbs Onions
+			6 cloves Garlic
+			Herbes de Provence (Basil, Thyme, Parsley)
+			Olive Oil
+			Salt
+			Pepper
+			140g Tomato Paste (optional if tomatoes aren’t yummy)
+		}
+		directions
+		{
+			Peel and drain the tomatoes (don’t mind the seeds): cut out the stem cores; drop the whole tomatoes into boiling water for 2 minutes. Remove into a colander. The skin should split for easy removal; otherwise, make an X cut in the top, then peel off the skin.
+			Chop the onion and garlic. Clean the bell pepper, cut into small strips.
+			In a large cooking pot with thick bottom, put in olive oil, onions, and chopped garlic. Add in the bell pepper. Cover to keep in the moisture. Cook for 20 minutes, stirring frequently, and add olive oil as necessary to prevent burning.
+			Add the tomatoes and Herbes de Provence. If you don’t have good garden tomatoes with flavour, add a small can of tomato paste. Stir well and cook for another 15 minutes.
+			Cut the eggplant into disks. Cut zucchini into disks.
+			Add the eggplant and zucchini to the pot.
+			Cook for about 30 minutes.
+		}
+		tags
+			SOUP FRENCH TOMATO 
+	}
+	{
+		recipeName
+			Fajitas
+		description
+			
+		author
+			Joel Maxuel
+		prepTime
+			20 min
+		cookTime
+			15 min
+		ingredients
+		{
+			1/4 cup + 1/2 tsp Lime Juice, divided
+			3 Tbsp Olive Oil, divided
+			4 cloves Garlic, crushed
+			3 tsp Soy Sauce, divided
+			1 tsp Salt
+			1/2 tsp Liquid Smoke
+			1/2 tsp Cayenne Pepper
+			1/4 tsp Black Pepper
+			1 lb Chicken Breasts or Skirt Steak, bones/skin removed
+			2 Tbsp Water
+			1/2 each Green, Red, and Yellow Bell Pepper, thinly sliced
+		}
+		directions
+		{
+			Combine 1/4 cup lime juice, 2 Tbsp of the oil, garlic, 2 tsp soy sauce, the salt, liquid smoke, cayenne pepper, and black pepper in a resealable container, add chicken/steak, cover, and refrigerate for at least 2 hours or overnight.
+			Combine water, remaining soy sauce and lime juice, and a dash of salt and pepper - set aside.
+			Grill meat over a medium-high flame for 4-5 minutes per side, or until cooked through.
+			Cut meat into thin strips - set aside and keep warm.
+			In a large skillet over medium-high heat, cook onion and peppers in remaining oil until brown - remove from heat and pour reserved liquid mixture over onions and peppers.
+			Toss together meat, onions, and peppers.
+			Can serve with warm tortillas, pico de gallo, cheese, sour cream, and guacamole.
+		}
+		tags
+			BEEF CHICKEN SOUTHWEST 
+	}
+	{
+		recipeName
+			Spiced Apple Pancakes
+		description
+			
+		author
+			based.cooking
+		prepTime
+			15 min
+		cookTime
+			10 min
+		ingredients
+		{
+			1 cup flour
+			1 large apple, peeled
+			1 tbsp sugar
+			1 tbsp cinnamon (or more to taste)
+			1/2 tsp baking powder
+			2/3 cup milk
+			1 egg
+		}
+		directions
+		{
+			In a medium bowl, combine flour, sugar, cinnamon, baking powder, and 1 pinch of salt.
+			Separate the egg yolk and egg white. Add the egg yolk to the dry ingredients.
+			Whisk the egg white until foamy.
+			Slice the peeled apple into thin strips. Alternatively, grate the apple.
+			Combine dry ingredients, apple, vanilla extract, egg white, and milk into a homogenous batter.
+			To a large pan, add 1 tbsp butter. Add the batter (about 3 tbsp per pancake) and cook for 2 min per side on medium-high heat.
+		}
+		tags
+			APPLE PANCAKE GERMAN BREAKFAST 
+	}
+	{
+		recipeName
+			Shrimp and Chicken Jambalaya
+		description
+			Warm up your stock with raw shrimp shells to infuse additional flavour, if desired. Serve dish with french bread and your favourite beer.
+		author
+			Joel Maxuel
+		prepTime
+			20 min
+		cookTime
+			40 min
+		ingredients
+		{
+			1/4 tsp Cayenne
+			3/4 tsp White Pepper
+			1 tsp Kosher Salt
+			1/4 tsp Thyme
+			1/2 tsp Rubbed Sage
+			1/4 tsp Dried Basil
+			1/2 tsp Black Pepper
+			1 Tbsp Unsalted Butter
+			1/2 cup Diced Andouille (or Chirozo sausage)
+			1/2 cup Diced Onion
+			1/2 cup Diced Bell Pepper
+			1/2 cup Diced Bell Pepper
+			1/2 cup Diced Fresh Tomatoes
+			1/2 cup Diced Fresh Tomatoes
+			3/4 cup Enriched Long Grain Rice
+			1-1/4 cup Chicken Stock
+			1 Tbsp Worcestershire Sauce
+			2 Tbsp Minced Fresh Garlic
+			1/2 cup Diced Chicken (cooked or raw)
+			1-1/2 cup Medium Shrimp
+			1 Tbsp Finely Chopped Italian Parsley
+			1 Tbsp Finely Chopped Italian Parsley
+		}
+		directions
+		{
+			Preheat the oven to 350 degrees F. Mix together the seasoning mix (herbs, salt, pepper).
+			Mix together the Holy Trinity (onion, celery, bell pepper).
+			In a Cast Iron Durch Oven, melt the butter over medium heat, add the Andouille and cook until it starts to brown.
+			Add 1/2 of the Holy Trinity, cook until the vegetables are tender.
+			Add the diced tomatoes and cook for one minute. Add the tomato sauce and cook for another minute.
+			Add the rice and cook for 2 minutes, stirring constantly.
+			Add the stock, remaining Holy Trinity, seasoning mix, Worcestershire, and the garlic.
+			Taste the broth for seasoning, particularly salt.
+			Add the chicken, stir well and put the pot in the preheated oven. Bake uncovered for 25 minutes.
+			Stir in the raw shrimp, parsley, and green onions - place back into oven for another 10 minutes (or until the shrimp is cooked through).
+		}
+		tags
+			SHRIMP CHICKEN CAJUN TOMATO 
+	}
+	{
+		recipeName
+			Soleier (pickled eggs)
+		description
+			Soleier are a german pub dish. They are typically enjoyed between two beers.
+		author
+			SvenT
+		prepTime
+			10 min
+		cookTime
+			10 min
+		ingredients
+		{
+			peels of five onions
+			10 eggs
+			2 loorber leaves
+			3 cloves
+			4 allspice
+			1Tbsp peppercorns
+			1Tbsp caraway seeds
+			1Tbsp mustard seeds
+			1tsp of Szechuan pepper (optional)
+			1tsp lovage (optional)
+			1tsp nutmeg (optional)
+			100mL vinegar
+			3 cloves of garlic
+		}
+		directions
+		{
+			Put 750mL of water and the peels of five onions in a pot and let them cook for five minutes. Remove the peels about twenty minutes later.
+			Put the eggs, one teaspoon of sugar, two tablespoons of salt and all spices (but vinegar and garlic) in the pot, bring it to a boil and cook them for seven minutes.
+			Use a spoon to remove the eggs from the pot and crack them all around. Do not remove the eggshell!
+			Place the eggs and the garlic in a jar, fill it with the spiced water and add the vinegar. Add water, if needed, so that the eggs are covered.
+			Let them rest for at least three days and at most two weeks at room temperature or slightly below.
+		}
+		tags
+			SNACK GERMAN EGGS PUB 
+	}
+	{
+		recipeName
+			Quarkbällchen – Fried curd balls
+		description
+			"Quark” is a type of fresh dairy product. It’s usually translated as curd cheese or cottage cheese.
+		author
+			Kirill Schmidt
+		prepTime
+			
+		cookTime
+			
+		ingredients
+		{
+			420ml quark (plain yoghurt can be used as a replacement)
+			2 eggs
+			6 or 7 tbsp of sugar
+			2 packets of vanilla sugar
+			2 packets of vanilla sugar
+			2 packets of baking powder
+			1L sunflower oil for frying
+			(Optional) icing sugar
+			(Optional) Alcohol by eye so that they do not soak up so much oil
+		}
+		directions
+		{
+			Mix ingredients (quark, eggs, sugar, flour, baking powder) in one bowl.
+			Pour the sunflower oil into a cooking pot and heat up the hotplate
+			Form balls from the dough and put them into the cooking pot
+			Once they are brown-ish, put them onto a plate
+			(Optional) add icing sugar
+			Enjoy!
+		}
+		tags
+			 
+	}
+	{
+		recipeName
+			Glühwein - mulled wine
+		description
+			A recipe for Glühwein/mulled wine a beverage you can find at almost every European christmas market. This recipe is my favorite one - optimized for flavor rather than alcohol content (it still kicks in).
+
+Ingredients for 1 liieter of Glühwein.
+		author
+			Bernhard Egger
+		prepTime
+			
+		cookTime
+			
+		ingredients
+		{
+			300 ml Cassis-Juice (Johannesbeer), if you can’t find it you can replace it with another juice, I did it e.g. with cranberry pomegranate juice
+			1 bottle 700ml red wine (I prefer Primitivo/Zinfandel), don’t buy a cheap cooking wine, you want to drink it :)
+			50 g Sugar
+			25 g Raisins
+			1 orange
+			1 cinamon bark
+			1 spoon ginger powder (or a bit of fresh ginger)
+			1 spoon cloves
+			5 star anise
+			if you don’t have the spices you can also just throw in sweet cinamon tea bags instead (or similar), they contain most spices - I took 6 teabags for 1 litre
+		}
+		directions
+		{
+			cut the orange in nice looking pieces (since they are mainly decoration)
+			throw everything in a pot
+			warm up (don’t boil)
+			enjoy
+		}
+		tags
+			DRINK QUICK SWISS GERMAN FRENCH 
+	}
+	{
+		recipeName
+			Sauerkraut
+		description
+			Sauerkraut is a based lacto-fermented food that is healthy and has a long shelf live.
+		author
+			Andrej Kirchmaier
+		prepTime
+			
+		cookTime
+			
+		ingredients
+		{
+			1 head of cabbage
+			2-4% sea salt by cabbage weight
+		}
+		directions
+		{
+			Prepare and clean as many glass jars as you think you’ll need.
+			Chop or shred cabbage and rinse under cold water. Sprinkle with salt.
+			Knead the cabbage with clean hands for about 10 minutes until there is enough liquid to cover it.
+			Stuff the cabbage into a glass jar, pressing the cabbage underneath the liquid. If necessary, add a bit of water to completely cover the cabbage.
+			Cover the jar with a tight lid, airlock lid, or coffee filter secured with a rubber band.
+			Culture at room temperature (60-70°F/15-20°C is preferred) for at least 2 weeks, until desired flavor and texture is achieved. If using a tight lid, burp it daily to release excess pressure.
+			Once the sauerkraut is finished, put a tight lid on the jar and move to cold storage. The sauerkraut’s flavor will continue to develop as it ages.
+		}
+		tags
+			GERMAN CABBAGE SIDE FASTING 
+	}
+END OF RECIPES

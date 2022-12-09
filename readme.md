@@ -1,4 +1,4 @@
-# Recipe Manager
+# Recipe Manager 0.1.1
 
 Recipe Manager is a free software program written in Java that helps you manage your recipies.
 
@@ -20,15 +20,31 @@ This program was written for my final project in Computer Science II, and it was
 
 ## Downloading and Running
 
-To run this program, go to the "releases" tab on github and download the version for your operating system. Currently the only two releases are for Windows and GNU/Linux, but other systems such as MacOSX and the BSD's can be run by downloading the raw jar file, then executing it (weather via a terminal or via shell script) with the additional arguments:
+Naviate to the "releases" page and download a the .jar. After downloading, it should be able to be run with the JDK with a double click. If not, try to right click and, click "open with", then select Java. If none of this works, open up a terminal, navigate to the diretory of the .jar file, and type:
 
 ```
---module-path $PATH_TO_FX --add-modules javafx.controls,javafx.fxml
+java -jar Recipe-Manager_0-1-1.jar
 ```
-
-Make sure that you have your [JavaFX path variables set up](https://openjfx.io/openjfx-docs/)! (or alternativly replace $PATH_TO_FX with the path to your JavaFX libraries (Ex: /usr/share/openjfx/lib)
 
 ## Compiling from Source
 
 To compile from source, install Eclipse and then import the source as an existing project. From there, right click on RecipeManager.Main (not RecipeManager.gui.Main!), click "run as", then change the "VM Args" to match the aforementioned arguments used for running from the terminal, then compile and run. Also make sure to add the necissary libraies.
+
+## 0.1.1 Changelog
+
+* Fixed filter menu adding blank tag to filter when emptying text field.
+
+* Tweaked new directions to work just like old directions being read from the recipe.
+
+* Migrated ScrollBars to ScrollPanes where best fit (makes it much nicer to use)
+
+* Binary jar now contains JavaFX .class files (or at least it should), and can now be run without caring about your path or operating system.
+
+* Added example cookbook (see below)
+
+* Fixed recipe descriptions using description (vestigial) of Cookbok instead of their own description when writing to file.
+
+## Example Cookbook
+
+All recipes in the example cookbook are from [https://based.cooking](https://based.cooking).
 

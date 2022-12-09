@@ -9,6 +9,7 @@ package recipeManager.gui.elements;
 
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.util.ArrayList;
 
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
@@ -75,7 +76,6 @@ public class CookBookControl extends VBox {
 			try {
 				Manager.open(file);
 			} catch (FileNotFoundException e1) {
-				// TODO Auto-generated catch block
 				System.out.println("it broke.");
 				e1.printStackTrace();
 			}
@@ -86,7 +86,7 @@ public class CookBookControl extends VBox {
 
 		btNew.setOnAction(e -> {
 			Manager.getRecipes().add(new Recipe());
-
+			Manager.indicateUnsavedChanges();
 			this.updateButtons();
 		});
 
@@ -110,6 +110,7 @@ public class CookBookControl extends VBox {
 	}
 
 	public void updateButtons() {
+		ArrayList<String> allTags = new ArrayList<String>();
 		buttonPane.getChildren().clear();
 
 		if (Manager.getRecipes().size() == 0) {
@@ -119,40 +120,25 @@ public class CookBookControl extends VBox {
 		}
 
 		for (Recipe r : Manager.getRecipes()) {
+			allTags.addAll(r.getTags()); // for use with the set to view all types of tags
 
 			if (Manager.getFilter().size() > 0) {
-				boolean passesFilter = false;
+				boolean passesFilter = true;
 				
-				for (String tag : r.getTags()) {
-					for (String filterTag : Manager.getFilter()) {
-						if (tag.equals(filterTag)) {
-							passesFilter = true;
-							break;
-						}
-					}
-					
-					if (passesFilter)
-						break;
+				for (String filter : Manager.getFilter()) {
+					if (!r.getTags().contains(filter))
+						passesFilter = false;
 				}
 
 				// move to next recipe without adding.
 				if (!passesFilter) continue;
 			}
 			
-			/*
-			 * Tag system plan:
-			 *
-			 * boolean containsTag = false;
-			 *
-			 * for (String filterTag : Manager.getFilter()) { for (String tag : r.getTags())
-			 * if tag.equals(filterTag) containsTag = true;
-			 *
-			 * if (!containsTag) continue;
-			 */
 
 			RecipeButton newButton = new RecipeButton(r);
 			newButton.setMinWidth(BUTTON_WIDTH);
 			newButton.setMinHeight(BUTTON_HEIGHT);
+			newButton.setWrapText(true);
 
 			// reset the text weight of the last one and do this one
 			newButton.setOnAction(e -> {
@@ -166,6 +152,9 @@ public class CookBookControl extends VBox {
 
 			buttonPane.getChildren().add(newButton);
 		}
+		
+		// after all is said and done, update the tags set
+		Manager.updateTagsSet(allTags);
 
 	}
 

@@ -7,12 +7,17 @@
 package recipeManager.gui.elements;
 
 import java.util.ArrayList;
+import java.util.Optional;
 
 import javafx.geometry.Insets;
 import javafx.geometry.Orientation;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.Label;
 import javafx.scene.control.ScrollBar;
+import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.BorderPane;
@@ -36,6 +41,11 @@ public class EditModePane extends BorderPane {
 		tfName.setPrefWidth(r.getName().length() * 5);
 		name.getChildren().addAll(new Label("Name:"), tfName);
 		// tfName.setMaxWidth(640);
+		
+		// Author
+		VBox author = new VBox();
+		TextField tfAuthor = new TextField(r.getAuthor());
+		author.getChildren().addAll(new Label("Author:"), tfAuthor);
 
 		// prep time
 		VBox prepTime = new VBox();
@@ -50,6 +60,7 @@ public class EditModePane extends BorderPane {
 
 		// description
 		TextArea description = new TextArea(r.getDescription());
+		description.setWrapText(true);
 		
 		
 		// tags
@@ -76,6 +87,7 @@ public class EditModePane extends BorderPane {
 
 		for (String ingredient : r.getIngredients()) {
 			TextField newTF = new TextField(ingredient);
+			
 			ingredientTFArray.add(newTF);
 			ingredientList.getChildren().add(newTF);
 		}
@@ -104,6 +116,8 @@ public class EditModePane extends BorderPane {
 
 		for (String direction : r.getDirections()) {
 			TextArea newTA = new TextArea(direction);
+			newTA.setPrefColumnCount(60);
+			newTA.setMinHeight(5);
 			newTA.setWrapText(true);
 			directionTAList.add(newTA);
 			directionList.getChildren().add(newTA);
@@ -124,36 +138,28 @@ public class EditModePane extends BorderPane {
 
 		// vertical pane for all that junk
 		VBox verticalPane = new VBox();
-		verticalPane.getChildren().addAll(name, description, prepTime, cookTime, tags, ingredientsEditor, directionEditor);
+		verticalPane.getChildren().addAll(name, author, description, prepTime, cookTime, tags, ingredientsEditor, directionEditor);
 		verticalPane.setSpacing(20);
 
 		// controls
 		Button btSave = new Button("Save Without Writing");
 		Button btCancel = new Button("Cancel");
+		Button btDel = new Button("Delete");
 
 		HBox controls = new HBox();
 		controls.setSpacing(15);
-		controls.getChildren().addAll(btSave, btCancel);
+		controls.getChildren().addAll(btSave, btCancel, btDel);
 
 		VBox all = new VBox();
 		all.setPadding(new Insets(10, 10, 10, 10));
 		all.getChildren().addAll(verticalPane, controls);
 		all.setSpacing(35);
-
+	
 		this.setCenter(all);
 
 		// scroll bar
-		ScrollBar scrollBar = new ScrollBar();
-		scrollBar.setOrientation(Orientation.VERTICAL);
-
-		// current
-
-		scrollBar.valueProperty().addListener(ov -> {
-			System.out.println(all.getHeight());
-			all.setTranslateY(-(scrollBar.getValue() * all.getHeight() / scrollBar.getMax()));
-
-		});
-
+		ScrollPane scrollBar = new ScrollPane(all);
+		scrollBar.setPadding(new Insets(10, 10, 10, 10));
 		this.setRight(scrollBar);
 
 		// ingredient add buttons
@@ -185,7 +191,9 @@ public class EditModePane extends BorderPane {
 		});
 
 		btDirAdd.setOnAction(e -> {
-			TextArea newTA = new TextArea("\n\n\n");
+			TextArea newTA = new TextArea();
+			newTA.setPrefColumnCount(60);
+			newTA.setWrapText(true);
 			directionTAList.add(newTA);
 			directionList.getChildren().add(newTA);
 		});
@@ -200,6 +208,25 @@ public class EditModePane extends BorderPane {
 		btCancel.setOnAction(e -> {
 			Manager.closeEditor();
 		});
+		
+		btDel.setOnAction(e -> {
+			Alert alert = new Alert(AlertType.CONFIRMATION,
+					"Are you sure you want to delete this recipe?",
+					ButtonType.YES, 
+		            ButtonType.CANCEL);
+			alert.setTitle("Date format warning");
+			Optional<ButtonType> result = alert.showAndWait(); // not sure what "optional" means???
+			
+			if (result.get() == ButtonType.YES) {
+				Manager.getRecipes().remove(r);
+				Manager.getButtonsControl().updateButtons();
+				Manager.getButtonsControl().getInformationPane().loadRecipe(r);
+				Manager.getButtonsControl().getInformationPane().getChildren().clear();
+				Manager.closeEditor();
+			}
+			
+			
+		});
 
 		btSave.setOnAction(e -> {
 
@@ -208,8 +235,12 @@ public class EditModePane extends BorderPane {
 			r.setPrepTime(tfPrepTime.getText());
 			r.setCookTime(tfCookTime.getText());
 			
+			// author
+			r.setAuthor(tfAuthor.getText());
+			
 			// description
 			r.setDescription(description.getText());
+			System.out.println(description.getText());
 
 			// tags
 
@@ -244,6 +275,10 @@ public class EditModePane extends BorderPane {
 			Manager.closeEditor();
 
 			System.out.println(Manager.getRecipes().size());
+			
+			Manager.indicateUnsavedChanges();
+			
+			this.setMaxHeight(700);
 		});
 	}
 }

@@ -17,6 +17,7 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Scanner;
+import java.util.TreeSet;
 
 import javafx.scene.Scene;
 import javafx.stage.FileChooser;
@@ -38,10 +39,22 @@ public class Manager {
 	private static CookBookControl buttons;
 	private static File location;
 	private static ArrayList<String> filters = new ArrayList<String>();
+	private static String defaultTitle;
+	private static TreeSet<String> allTags = new TreeSet<String>();
+	
 
 	// get pointer to stage
 	public static void setPrimaryStage(Stage s) {
 		primaryStage = s;
+	}
+	
+	public static TreeSet<String> getTagSet() {
+		return allTags;
+	}
+	
+	public static void updateTagsSet(ArrayList<String> tags) {
+		for (String tag : tags)
+			allTags.add(tag);
 	}
 
 	// get pointer to scene (this is NOT the pane itself)
@@ -60,6 +73,15 @@ public class Manager {
 	public static CookBookControl getButtonsControl() {
 		return buttons;
 	}
+	
+	public static void indicateUnsavedChanges() {
+		if (primaryStage.getTitle().charAt(primaryStage.getTitle().length() - 1) != '*')
+			primaryStage.setTitle(primaryStage.getTitle() + " *");
+	}
+	
+	public static void indicateSavedChanges() {
+		primaryStage.setTitle(defaultTitle);
+	}
 
 	public static void open(File file) throws FileNotFoundException {
 		location = file;
@@ -72,6 +94,7 @@ public class Manager {
 			buttons.getInformationPane().getChildren().clear();
 
 		primaryStage.setTitle("Recipe Manager - " + currentCookBook.getName());
+		defaultTitle = primaryStage.getTitle();
 
 		String nextLine = input.nextLine().trim();
 
@@ -137,6 +160,7 @@ public class Manager {
 
 			case "\t\tdescription":
 				tempRecipe.setDescription(input.nextLine().trim());
+				System.out.println(tempRecipe.getDescription());
 				break;
 
 			case "\t\tprepTime":
@@ -257,6 +281,7 @@ public class Manager {
 			output += "cookBookName\n";
 			output += "\t" + currentCookBook.getName() + "\n";
 			output += "description\n";
+			System.out.println("writing description " + currentCookBook.getDescription());
 			output += "\t" + currentCookBook.getDescription() + "\n";
 			output += "dateCreated\n\t0\n"; // temp
 			output += "dateLastModified\n\t493489348934\n";
@@ -272,7 +297,7 @@ public class Manager {
 				output += "\t\t\t" + r.getName() + "\n";
 
 				output += "\t\tdescription\n";
-				output += "\t\t\t" + currentCookBook.getDescription() + "\n";
+				output += "\t\t\t" + r.getDescription() + "\n";
 
 				output += "\t\tauthor\n";
 				output += "\t\t\t" + r.getAuthor() + "\n";
@@ -310,6 +335,8 @@ public class Manager {
 		}
 
 		System.out.println("wrote");
+
+		Manager.indicateSavedChanges();
 	}
 
 	public static String getWriteList(ArrayList<String> list) {
