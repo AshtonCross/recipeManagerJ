@@ -1,4 +1,4 @@
-# Recipe Manager 0.1.1
+# Recipe Manager 0.1.2
 
 Recipe Manager is a free software program written in Java that helps you manage your recipies.
 
@@ -26,23 +26,15 @@ Naviate to the "releases" page and download a the .jar. After downloading, it sh
 java -jar Recipe-Manager_0-1-1.jar
 ```
 
+Recipe Manager was compiled using OpenJDK-17. I recommend using Java 17 to run it. (If you don't feel like using this version, try compiling it with a different version. It probably works.)
+
 ## Compiling from Source
 
 To compile from source, install Eclipse and then import the source as an existing project. From there, right click on RecipeManager.Main (not RecipeManager.gui.Main!), click "run as", then change the "VM Args" to match the aforementioned arguments used for running from the terminal, then compile and run. Also make sure to add the necissary libraies.
 
-## 0.1.1 Changelog
+## 0.1.2 Changelog
 
-* Fixed filter menu adding blank tag to filter when emptying text field.
-
-* Tweaked new directions to work just like old directions being read from the recipe.
-
-* Migrated ScrollBars to ScrollPanes where best fit (makes it much nicer to use)
-
-* Binary jar now contains JavaFX .class files (or at least it should), and can now be run without caring about your path or operating system.
-
-* Added example cookbook (see below)
-
-* Fixed recipe descriptions using description (vestigial) of Cookbok instead of their own description when writing to file.
+* Tweaked filter menu's layout.
 
 ## Example Cookbook
 

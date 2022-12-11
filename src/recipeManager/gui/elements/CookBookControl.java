@@ -102,7 +102,7 @@ public class CookBookControl extends VBox {
 
 			Manager.openEditor(selectedRecipe);
 		});
-		
+
 		btSearch.setOnAction(e -> {
 			Manager.openFilterMenu();
 		});
@@ -110,7 +110,7 @@ public class CookBookControl extends VBox {
 	}
 
 	public void updateButtons() {
-		ArrayList<String> allTags = new ArrayList<String>();
+		ArrayList<String> allTags = new ArrayList<>();
 		buttonPane.getChildren().clear();
 
 		if (Manager.getRecipes().size() == 0) {
@@ -124,16 +124,16 @@ public class CookBookControl extends VBox {
 
 			if (Manager.getFilter().size() > 0) {
 				boolean passesFilter = true;
-				
+
 				for (String filter : Manager.getFilter()) {
 					if (!r.getTags().contains(filter))
 						passesFilter = false;
 				}
 
 				// move to next recipe without adding.
-				if (!passesFilter) continue;
+				if (!passesFilter)
+					continue;
 			}
-			
 
 			RecipeButton newButton = new RecipeButton(r);
 			newButton.setMinWidth(BUTTON_WIDTH);
@@ -152,7 +152,7 @@ public class CookBookControl extends VBox {
 
 			buttonPane.getChildren().add(newButton);
 		}
-		
+
 		// after all is said and done, update the tags set
 		Manager.updateTagsSet(allTags);
 

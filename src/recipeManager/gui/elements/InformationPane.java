@@ -61,7 +61,7 @@ public class InformationPane extends VBox {
 		// set up all text objects starting with recipe's name
 		Text name = new Text(r.getName());
 		name.setFont(Font.font("Mono", FontWeight.BOLD, FontPosture.ITALIC, 2.8 * FONT_BASE));
-		
+
 		Text description = new Text(r.getDescription());
 		description.setFont(Font.font("Mono", FontWeight.NORMAL, FontPosture.ITALIC, 1.8 * FONT_BASE));
 

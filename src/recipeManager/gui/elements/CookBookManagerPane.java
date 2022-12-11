@@ -21,7 +21,6 @@ import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Text;
-import recipeManager.manegment.Manager;
 
 public class CookBookManagerPane extends BorderPane {
 	private CookBookControl cookBookControl = new CookBookControl();
@@ -78,8 +77,8 @@ public class CookBookManagerPane extends BorderPane {
 			this.setLeft(notFound);
 		} else {
 			ScrollPane test = new ScrollPane(cookBookControl);
-			//test.autosize();
-			
+			// test.autosize();
+
 			test.setMinWidth(288);
 			this.setLeft(test);
 		}

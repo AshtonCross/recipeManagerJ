@@ -1,12 +1,21 @@
 /*
  * Management.java
  *
- * The management class is a class used statically containing many static
- * variables useful throughout any different panes that may be conjured up
- * while running.
- *
- * This class also handles the IO, and is what reads and writes to cook book
- * files.
+ * The goal of the management class is to handle the data in memory. 
+ * This includes holding the CookBook object (and SECURELY doing getters & setters).
+ * 
+ * TODO:
+ * 
+ * I want to break this static object down into the following : 
+ * 
+ * manegment.io.Write      <- writes a .cb file
+ * manegment.io.Read       <- reads a .cb file
+ * manegment.data.Recipes  <- steps, name, etc
+ * manegment.data.Cookbook <- file, name, etc
+ * manegment.data.Tags     <- handle tags from all the recipes
+ * manegement.data.Filter  <- handles the buttons in one pane
+ * manegment.Spotlight     <- manage stage, scenes, etc
+ * 
  */
 
 package recipeManager.manegment;
@@ -31,27 +40,26 @@ import recipeManager.gui.elements.RecipeButton;
 
 public class Manager {
 	private static CookBook currentCookBook = new CookBook();
-	private static ArrayList<Recipe> recipes = new ArrayList<Recipe>();
+	private static ArrayList<Recipe> recipes = new ArrayList<>();
 	private static boolean hasCookBookOpen = false;
 	private static Stage primaryStage;
 	private static Scene cookBookViewer;
 	private static Stage editStage;
 	private static CookBookControl buttons;
 	private static File location;
-	private static ArrayList<String> filters = new ArrayList<String>();
+	private static ArrayList<String> filters = new ArrayList<>();
 	private static String defaultTitle;
-	private static TreeSet<String> allTags = new TreeSet<String>();
-	
+	private static TreeSet<String> allTags = new TreeSet<>();
 
 	// get pointer to stage
 	public static void setPrimaryStage(Stage s) {
 		primaryStage = s;
 	}
-	
+
 	public static TreeSet<String> getTagSet() {
 		return allTags;
 	}
-	
+
 	public static void updateTagsSet(ArrayList<String> tags) {
 		for (String tag : tags)
 			allTags.add(tag);
@@ -61,7 +69,7 @@ public class Manager {
 	public static void setCookBookViewer(Scene s) {
 		cookBookViewer = s;
 	}
-	
+
 	public static ArrayList<String> getFilter() {
 		return filters;
 	}
@@ -73,12 +81,12 @@ public class Manager {
 	public static CookBookControl getButtonsControl() {
 		return buttons;
 	}
-	
+
 	public static void indicateUnsavedChanges() {
 		if (primaryStage.getTitle().charAt(primaryStage.getTitle().length() - 1) != '*')
 			primaryStage.setTitle(primaryStage.getTitle() + " *");
 	}
-	
+
 	public static void indicateSavedChanges() {
 		primaryStage.setTitle(defaultTitle);
 	}
@@ -118,16 +126,17 @@ public class Manager {
 		input.close();
 		hasCookBookOpen = true;
 	}
-	
+
 	public static void openFilterMenu() {
-		
+
 		FilterPane filterScreen = new FilterPane();
+		filterScreen.setSpacing(15);
 		Scene scene = new Scene(filterScreen);
 		Stage filterMenu = new Stage();
 		filterMenu.setScene(scene);
 		filterMenu.setTitle("Filter by Tags");
 		filterMenu.show();
-		
+
 		filterScreen.setStage(filterMenu);
 	}
 
@@ -228,19 +237,6 @@ public class Manager {
 		return list;
 	}
 
-	public static void createNewCookBook(File file) {
-		createNewCookBook(file, "untitled.cb");
-	}
-
-	public static void createNewCookBook(File file, String name) {
-		// TODO:
-		// see if a new file is able to be created
-
-		// if yes, create the file and open it
-
-		// once open, return
-
-	}
 	
 	public static void setCookBookControl(CookBookControl c) {
 		buttons = c;
@@ -251,10 +247,9 @@ public class Manager {
 		if (location == null) {
 			FileChooser fileChooser = new FileChooser();
 			fileChooser.setTitle("Write to which file?");
-			
+
 			FileChooser.ExtensionFilter extFilter = new FileChooser.ExtensionFilter("CB files (*.cb)", "*.cb");
 			fileChooser.getExtensionFilters().add(extFilter);
-			
 
 			File file = fileChooser.showSaveDialog(new Stage());
 
@@ -262,7 +257,7 @@ public class Manager {
 				// user has picked "cancel"
 				return;
 			}
-			
+
 			System.out.println(file);
 			file = new File(new String(file + ".cb"));
 
