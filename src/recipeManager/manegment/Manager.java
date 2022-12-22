@@ -105,7 +105,7 @@ public class Manager {
 		defaultTitle = primaryStage.getTitle();
 
 		String nextLine = input.nextLine().trim();
-
+		
 		while (input.hasNextLine()) {
 			switch (nextLine) {
 			case "cookBookName":
